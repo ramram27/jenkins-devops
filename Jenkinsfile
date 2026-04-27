@@ -49,48 +49,30 @@ pipeline {
             }
         }
        }
-     stage('Stop Old Container') {
-            steps {
-                sh """
-                    docker rm -f ${CONTAINER_NAME} || true
-                """
-            }
-        }
 
-        stage('Run New Container') {
-            steps {
-                sh """
-                    docker run -d \
-                    --name ${CONTAINER_NAME} \
-                    -p ${PORT}:8080 \
-                    ${DOCKER_IMAGE}:${DOCKER_TAG}
-                """
+        stage('stop old container') {
+            steps{
+                sh "docker stop ${CONTAINER_NAME} || true"
+                sh "docker rm ${CONTAINER_NAME} || true"
             }
-        }
 
-        stage('Verify Deployment') {
-            steps {
-                sh """
-                    docker ps
-                """
-            }
         }
+        
+        stage('Run Docker Container') {
+            steps{
+                sh "docker run -d -p ${PORT}:8080 --name ${CONTAINER_NAME} 
+                ${DOCKER_IMAGE}:${DOCKER_TAG}"
+            }
     }
 
     post {
-
         success {
-            echo 'CI/CD Pipeline executed successfully 🚀'
+            echo 'Pipeline completed successfully.'
         }
-
+    
         failure {
-            echo 'Pipeline failed ❌ Please check logs.'
-        }
-
-        always {
-            echo 'Pipeline execution completed.'
+            echo 'pipeline failed. Please check the logs for details.'
         }
     }
 
     }
-
