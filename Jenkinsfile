@@ -81,6 +81,10 @@
 pipeline {
     agent any
 
+     tools {
+        nodejs 'NodeJS v25'
+    }
+
     environment {
         DOCKER_IMAGE   = 'ramram27/jenkins_devops'
         DOCKER_TAG     = 'latest'

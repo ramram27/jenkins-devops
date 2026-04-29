@@ -10,6 +10,17 @@ app.get('/', async (req , res)=>{
         `)
 })
 
+app.get('/add',async(req,res)=>{
+  const {num1,num2} = req.body;
+
+  if(num1 !== Number || num2 !== Number){
+    res.status(400).json({error: 
+      "Invalid input. Both num1 and num2 should be numbers."});
+  }
+  return res.json({result : num1 + num2})
+})
+
+
 module.exports = app;
 
 

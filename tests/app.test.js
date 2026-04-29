@@ -11,4 +11,14 @@ describe('test the api', () =>{
       "<h1>Welcome to the app</h1> <h2>Name: Rohit Kumar</h2>"
     );
     })
+
+test('test post method api', async (req , res) =>{
+  const res = await request(app).post('/add')
+  .send({num1:10,num2:15})
+
+  expect(res.statusCode).toBe(200);
+  expect(res.body.result).toBe(25)
+
+})
+
 });
