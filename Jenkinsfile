@@ -106,6 +106,7 @@ pipeline {
                 sh '''
                     node -v
                     npm -v
+                    npm cache clean --force
                     npm install
                 '''
             }
