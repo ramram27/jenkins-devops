@@ -82,7 +82,7 @@ pipeline {
     agent any
 
      tools {
-        nodejs 'NodeJS v25'
+        nodejs 'NodeJS v22'
     }
 
     environment {
