@@ -81,8 +81,8 @@
 pipeline {
     agent any
 
-     tools {
-        nodejs 'NodeJS v18'
+    tools {
+        nodejs 'Node22'  // Changed from 'NodeJS v18' to match Jenkins configuration
     }
 
     environment {
@@ -102,7 +102,7 @@ pipeline {
         }
 
         stage('Install Dependencies') {
-             steps {
+            steps {
                 sh '''
                     node -v
                     npm -v
