@@ -82,14 +82,14 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'Node22'  // Changed from 'NodeJS v18' to match Jenkins configuration
+        nodejs 'Node22'  
     }
 
     environment {
         DOCKER_IMAGE   = 'ramram27/jenkins_devops'
         DOCKER_TAG     = 'latest'
         CONTAINER_NAME = 'jenkins_devops_container'
-        PORT           = '8080'
+        PORT           = '3000'
     }
 
     stages {
