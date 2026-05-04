@@ -1,3 +1,20 @@
+Step 1 — Check container exist or not
+docker ps -a | grep jenkins_devops
+Step 2 — Container logs check
+docker logs jenkins_devops_container
+
+step 3 delete old container
+sudo docker rm -f jenkins_devops_container
+
+sudo docker run -d \
+  --name jenkins_devops_container \
+  -p 3000:8000 \
+  ramram27/jenkins_devops:latest
+
+verify
+sudo docker ps | grep jenkins_devops
+sudo docker logs jenkins_devops_container
+
 Install Jenkins using Docker
 Works perfectly on any Ubuntu version
 
@@ -10,9 +27,16 @@ sudo systemctl enable docker
 
 Run Jenkins container
 sudo docker run -d \
-  -p 8080:8080 -p 50000:50000 \
+  -p 3000:8080 -p 5000:5000 \
   --name jenkins \
   jenkins/jenkins:lts
+
+ # -p 8080:8080
+    ↑         ↑
+EC2 ka port   Container ke andar ka port
+
+Jenkins Agent → EC2:50000 → Jenkins Container:50000
+                             (Agent communication)
 
 sudo systemctl status docker
 sudo systemctl start docker
@@ -63,6 +87,14 @@ http://<your-server-ip>:8080
 Step 4: Get Admin Password
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 6. Install Required Jenkins Plugins
+
+docker run -d \
+-p 3000:8080 \
+-p 5000:5000 \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v jenkins_home:/var/jenkins_home \
+--name jenkins \
+jenkins/jenkins:lts
 
 Inside Jenkins dashboard:
 
