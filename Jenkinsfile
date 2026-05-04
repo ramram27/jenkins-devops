@@ -9,7 +9,7 @@ pipeline {
         DOCKER_IMAGE   = 'ramram27/jenkins_devops'
         DOCKER_TAG     = 'latest'
         CONTAINER_NAME = 'jenkins_devops_container'
-        PORT           = '3000'
+        PORT           = '8000'
     }
 
     stages {
@@ -76,7 +76,7 @@ pipeline {
                 sh """
                     docker run -d \
                     --name ${CONTAINER_NAME} \
-                    -p ${PORT}:8080 \
+                    -p ${PORT}:8000 \
                     ${DOCKER_IMAGE}:${DOCKER_TAG}
                 """
             }

@@ -84,7 +84,12 @@ docker exec jenkins docker ps
 # Check socket permissions
 docker exec jenkins ls -la /var/run/docker.sock
 
-
+# run container 8000 and ec2 public app run 3000
+docker run -d \
+  --name jenkins_devops_container \
+  -p 3000:8000 \
+  --restart unless-stopped \
+  ramram27/jenkins_devops:latest
 
 Copy the password and paste into Jenkins setup screen
 Click "Install suggested plugins"
