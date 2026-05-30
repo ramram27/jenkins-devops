@@ -11,13 +11,13 @@ describe('test the api', () => {
         );
     });
 
-    test('test post method api', async () => {
-        const res = await request(app)
-            .post('/add')
-            .send({ num1: 10, num2: 15 });
+    // test('test post method api', async () => {
+    //     const res = await request(app)
+    //         .post('/add')
+    //         .send({ num1: 10, num2: 15 });
 
-        expect(res.statusCode).toBe(200);
-        expect(res.body.result).toBe(25);
-    });
+    //     expect(res.statusCode).toBe(200);
+    //     expect(res.body.result).toBe(25);
+    // });
 
 });

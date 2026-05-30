@@ -3,3 +3,16 @@ kind:Service
 
 metadata:
   name:jenkins_devops_service
+
+  spec:
+
+  type:NodePort
+
+  selector:
+    app:jenkins_devops
+
+  ports:
+  - protocal: TCP
+    port:3000
+    tartetPort:3000
+    nodePort:30002
