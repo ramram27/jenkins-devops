@@ -2,19 +2,20 @@ const express = require('express');
  
 const app = express();
  const PORT = process.env.PORT || 3000;
-// Add middleware to parse JSON bodies
+// Add middleware to parsep JSON bodies
 app.use(express.json());
  
 app.get('/', async (req, res) => {
     res.send(`
         <h1>Welcome to the app</h1>
         <h2>Name: Rohit Kumar</h2>
+        <h2></h2>Roll Number: 123456</h2>
     `);
 });
  
 // Changed from GET to POST to match the test
 app.post('/add', async (req, res) => {
-    const { num1, num2 } = req.body;
+    const { num1, num2 } = req.body;p
  
     // Fixed validation - correct way to check if values are numbers
     if (typeof num1 !== 'number' || typeof num2 !== 'number') {

@@ -63,30 +63,42 @@ pipeline {
             }
         }
 
-        stage('Stop Old Container') {
-            steps {
-                sh """
-                    docker rm -f ${CONTAINER_NAME} || true
-                """
-            }
-        }
+        // stage('Stop Old Container') {
+        //     steps {
+        //         sh """
+        //             docker rm -f ${CONTAINER_NAME} || true
+        //         """
+        //     }
+        // }
 
-        stage('Run New Container') {
-            steps {
-                sh """
-                    docker run -d \
-                    --name ${CONTAINER_NAME} \
-                    -p ${PORT}:3000 \
-                    ${DOCKER_IMAGE}:${DOCKER_TAG}
-                """
-            }
-        }
+        // stage('Run New Container') {
+        //     steps {
+        //         sh """
+        //             docker run -d \
+        //             --name ${CONTAINER_NAME} \
+        //             -p ${PORT}:3000 \
+        //             ${DOCKER_IMAGE}:${DOCKER_TAG}
+        //         """
+        //     }
+        // }
 
-        stage('Verify Deployment') {
-            steps {
-                sh 'docker ps'
-            }
-        }
+        // stage('Verify Deployment') {
+        //     steps {
+        //         sh 'docker ps'
+        //     }
+        // }
+
+      stage('Deploy to Kubernetes') {
+         steps{
+            sh """
+                kubectl apply -f k8s-deployment.yaml
+                kubectl apply -f k8s-service.yaml
+            """
+         }
+
+      }
+     
+
     }
 
     post {

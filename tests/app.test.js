@@ -7,7 +7,7 @@ describe('test the api', () => {
         const res = await request(app).get('/');
         expect(res.statusCode).toBe(200);
         expect(res.text.replace(/\s+/g, " ").trim()).toBe(
-            "<h1>Welcome to the app</h1> <h2>Name: Rohit Kumar</h2>"
+            "<h1>Welcome to the app</h1> <h2>Name: Rohit Kumar</h2> <h2></h2>Roll Number: 123456</h2>"
         );
     });
 
